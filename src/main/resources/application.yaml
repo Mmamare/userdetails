@@ -1,0 +1,37 @@
+server:
+   port: 9091
+   
+   
+spring:
+  application:
+    name: user-service
+    
+  
+ 
+resilience4j:
+   circuitbreaker:
+     instance:
+       usercircuitbreaker:
+         registerHealthIndictor: true
+         eventConsumerBufferSize: 10
+         automaticTransitionFromToHalfOpenEnabled: true
+         failureRateThreshold: 50
+         minimumNumberOfCalls: 5
+         permittedNumberOfCallsInHalfOpenState: 3
+         slidingWindowSize: 10
+         waitDurationInOpenState: 5s
+         slidingWindowType: COUNT_BASED
+         
+management: 
+     health:
+       circuitbreakers:
+         enabled: true
+     endpoints:
+       web:
+         exposure:
+           include: health
+     
+     endpoint:
+       health:
+         show-details: always
+       

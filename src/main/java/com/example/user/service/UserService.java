@@ -13,5 +13,6 @@ public interface UserService {
 	void deleteById(Long id);
 	
 	ResponseObjects returnClient(String id);
+	ResponseObjects returnUserAddress(String username); 
 
 }

@@ -9,7 +9,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import com.example.user.entity.UserData;
-import com.example.user.productMapping.Products;
+import com.example.user.product_and_address_Mapping.Address;
+import com.example.user.product_and_address_Mapping.Products;
 import com.example.user.repo.UserRepo;
 import com.example.user.responseObject.ResponseObjects;
 
@@ -61,14 +62,22 @@ public class UserServiceImpl implements UserService {
 		UserData userData = userRepo.findUserByUniqueId(uniqueId);
 		
 		Products products = restTemplate.getForObject("http://PRODUCT-SERVICE/amazon/products/" + userData.getUniqueId(), Products.class);
+		Address address = restTemplate.getForObject("http://ADDRESS-SERVICE/amazon/user_address/" + userData.getUniqueId(), Address.class);
 		ResponseObjects responseObjects = new ResponseObjects();
 		
 		responseObjects.getUserData();
 		
 		responseObjects.getProducts();
+		responseObjects.getAddress();
 		
 		return responseObjects;
 		
+	}
+
+	@Override
+	public ResponseObjects returnUserAddress(String username) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 

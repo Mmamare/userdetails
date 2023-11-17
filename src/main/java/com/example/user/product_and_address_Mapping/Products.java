@@ -1,4 +1,4 @@
-package com.example.user.productMapping;
+package com.example.user.product_and_address_Mapping;
 
 import java.math.BigInteger;
 import java.util.UUID;
